@@ -30,11 +30,12 @@ function step2() {
 function step3() {
   exec('git commit -am "' + commitmessage + '"', (err, stdout, stderr) => {
     if (err) {
-      console.log(err);
-      console.log('');
-      console.log(stdout);
-      console.log('');
-      console.log(stderr);
+      if (err) {
+        console.log.bind(err);
+        console.log(stdout);
+        return;
+      }
+      step4();
     } else {
       step4();
     }
