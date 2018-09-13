@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const prompt = require('prompt');
 const {exec} = require('child_process');
 const branch = require('git-branch');
