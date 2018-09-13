@@ -44,7 +44,11 @@ function step3() {
 function step4() {
   branch(function(err, branchName) {
     exec('git push origin ' + branchName, (err, stdout, stderr) => {
-      if (err) throw err;
+      if (err) {
+        console.log.bind(err);
+        console.log(stdout);
+        return;
+      }
       console.log(stdout);
       //step5();
     });
