@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-const repoName = require('git-repo-name');
-
 console.log(123);
 process.stdout.write("whuut");
 
-repoName('../', function(err, currentRepoName) {
-  console.log(currentRepoName);
+var remoteOriginUrl = require('remote-origin-url');
+
+remoteOriginUrl('./', function(err, url) {
+  if (err) return console.log(err);
+  console.log(url);
+  // url => "https://github.com/jonschlinkert/remote-origin-url.git"
 });

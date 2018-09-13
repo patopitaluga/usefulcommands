@@ -15,6 +15,7 @@
   "dependencies": {
     "git-branch": "^2.0.1",
     "git-repo-name": "^0.6.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "remote-origin-url": "^1.0.0"
   }
 }

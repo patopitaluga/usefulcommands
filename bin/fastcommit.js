@@ -31,11 +31,12 @@ async () => {
         if (err) {
           console.log.bind(err);
           console.log(stdout);
+          reject();
           return;
         }
-        step4();
+        resolve();
       } else {
-        step4();
+        resolve();
       }
     });
   });
@@ -45,10 +46,12 @@ async () => {
         if (err) {
           console.log.bind(err);
           console.log(stdout);
+          reject();
           return;
         }
         console.log(stdout);
-        //step5();
+        resolve();
+        return;
       });
     });
   });
@@ -58,13 +61,12 @@ async () => {
 
     repoName(function(err, currentRepoName) {
       exec('start https://bitbucket.org/ /' + currentRepoName + '/pull-requests/new', (err, stdout, stderr) => {
-      if (err) throw err;
-      console.log(stdout);
-
-      exec('git checkout dev', (err, stdout, stderr) => {
         if (err) throw err;
+        console.log(stdout);
 
-      });
+        exec('git checkout dev', (err, stdout, stderr) => {
+          if (err) throw err;
+        });
       });
     });
   });
