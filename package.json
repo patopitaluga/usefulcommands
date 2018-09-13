@@ -4,7 +4,8 @@
   "description": "Shortcut command to add all your files, commit them and push the commit to a remote git service.",
   "main": "bin/index.js",
   "bin": {
-    "gitfast": "bin/fastcommit.js"
+    "gitfast": "bin/fastcommit.js",
+    "testuc": "bin/index.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC"
