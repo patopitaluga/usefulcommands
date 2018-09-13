@@ -11,5 +11,8 @@
     "testuc": "bin/index.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
 }
