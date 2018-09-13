@@ -13,6 +13,7 @@
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "git-branch": "^2.0.1",
     "prompt": "^1.0.0"
   }
 }
