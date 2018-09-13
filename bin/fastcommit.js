@@ -29,10 +29,15 @@ function step2() {
 }
 function step3() {
   exec('git commit -am "' + commitmessage + '"', (err, stdout, stderr) => {
-    if (err)
+    if (err) {
       console.log(err);
-    else
+      console.log('');
+      console.log(stdout);
+      console.log('');
+      console.log(stderr);
+    } else {
       step4();
+    }
   });
 }
 function step4() {
