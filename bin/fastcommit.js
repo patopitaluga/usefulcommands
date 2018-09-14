@@ -6,7 +6,7 @@ const branch = require('git-branch');
 const repoName = require('git-repo-name');
 
 let commitmessage = '';
-async () => {
+let fastCommit = async () => {
   await new Promise((resolve, reject) => {
     prompt.start();
     prompt.get([{
@@ -39,6 +39,9 @@ async () => {
         resolve();
       }
     });
+  })
+  .catch((err) => {
+    console.log(err);
   });
   await new Promise((resolve, reject) => {
     branch(function(err, branchName) {
@@ -55,19 +58,22 @@ async () => {
       });
     });
   });
-  await new Promise((resolve, reject) => {
-    console.log('\x1b[32m', 'Create a merge request from source branch ' + branchName + ' to dev');
-    console.log('\x1b[0m', '');
+  /* await new Promise((resolve, reject) => {
+    branch(function(err, branchName) {
+      console.log('\x1b[32m', 'Create a merge request from source branch ' + branchName + ' to dev');
+      console.log('\x1b[0m', '');
 
-    repoName(function(err, currentRepoName) {
-      exec('start https://bitbucket.org/ /' + currentRepoName + '/pull-requests/new', (err, stdout, stderr) => {
-        if (err) throw err;
-        console.log(stdout);
-
-        exec('git checkout dev', (err, stdout, stderr) => {
+      repoName(function(err, currentRepoName) {
+        exec('start https://bitbucket.org/ /' + currentRepoName + '/pull-requests/new', (err, stdout, stderr) => {
           if (err) throw err;
+          console.log(stdout);
+
+          exec('git checkout dev', (err, stdout, stderr) => {
+            if (err) throw err;
+          });
         });
       });
     });
-  });
-}();
+  }); */
+};
+fastCommit();
