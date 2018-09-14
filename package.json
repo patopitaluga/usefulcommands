@@ -8,11 +8,13 @@
   },
   "bin": {
     "gitfast": "bin/fastcommit.js",
-    "testuc": "bin/index.js"
+    "testuc": "bin/index.js",
+    "dolar": "bin/dolar.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "git-branch": "^2.0.1",
     "git-repo-name": "^0.6.0",
     "prompt": "^1.0.0",
