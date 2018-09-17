@@ -9,7 +9,8 @@
   "bin": {
     "gitfast": "bin/fastcommit.js",
     "testuc": "bin/index.js",
-    "dolar": "bin/dolar.js"
+    "dolar": "bin/dolar.js",
+    "vaallover": "bin/vaallover.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC",
