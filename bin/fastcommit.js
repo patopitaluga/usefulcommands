@@ -75,10 +75,10 @@ let fastCommit = async () => {
       return;
     });
   });
-  gitRemoteOriginUrl().then(url => {
-    let urlpart = url.substr(url.lastIndexOf(':') + 1);
-    urlpart = urlpart.replace('.git', '');
-    await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
+    gitRemoteOriginUrl().then(url => {
+      let urlpart = url.substr(url.lastIndexOf(':') + 1);
+      urlpart = urlpart.replace('.git', '');
       console.log('\x1b[32m', 'Create a merge request from source branch ' + branchName + ' to main branch');
       console.log('\x1b[0m', '');
 
