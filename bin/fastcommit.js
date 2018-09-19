@@ -85,11 +85,8 @@ let fastCommit = async () => {
       repoName(function(err, currentRepoName) {
         exec('start https://bitbucket.org/' + urlpart + '/branch/' + branchName + '/pull-requests/new', (err, stdout, stderr) => {
           if (err) throw err;
-          console.log(stdout);
-
-          exec('git checkout dev', (err, stdout, stderr) => {
-            if (err) throw err;
-          });
+          // console.log(stdout);
+          resolve();
         });
       });
     });
