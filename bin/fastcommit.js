@@ -83,7 +83,7 @@ let fastCommit = async () => {
       console.log('\x1b[0m', '');
 
       repoName(function(err, currentRepoName) {
-        exec('start https://bitbucket.org/' + urlpart + '/branch/' + branchName + '/pull-requests/new', (err, stdout, stderr) => {
+        exec('start https://bitbucket.org/' + urlpart + '/pull-requests/new?source=' + urlpart + '%3A%3A' + branchName, (err, stdout, stderr) => {
           if (err) throw err;
           // console.log(stdout);
           resolve();
