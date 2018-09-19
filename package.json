@@ -8,15 +8,17 @@
   },
   "bin": {
     "gitfast": "bin/fastcommit.js",
-    "testuc": "bin/index.js",
+    "testuc": "bin/testuc.js",
     "dolar": "bin/dolar.js",
-    "vaallover": "bin/vaallover.js"
+    "vaallover": "bin/vaallover.js",
+    "listuc": "bin/listuc.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "git-branch": "^2.0.1",
+    "git-remote-origin-url": "^2.0.0",
     "git-repo-name": "^0.6.0",
     "prompt": "^1.0.0",
     "remote-origin-url": "^1.0.0"

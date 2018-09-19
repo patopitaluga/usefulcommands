@@ -4,9 +4,20 @@ const prompt = require('prompt');
 const {exec} = require('child_process');
 const branch = require('git-branch');
 const repoName = require('git-repo-name');
+const gitRemoteOriginUrl = require('git-remote-origin-url');
 
-let commitmessage = '';
+/**
+ *
+ */
 let fastCommit = async () => {
+  let commitmessage = '';
+  let branchName;
+  await new Promise((resolve, reject) => {
+    branch(function(err, result) {
+      branchName = result;
+      resolve();
+    });
+  });
   await new Promise((resolve, reject) => {
     prompt.start();
     prompt.get([{
@@ -14,57 +25,65 @@ let fastCommit = async () => {
       description: 'Commit message (enter for .)'
     }], function(err, result) {
       commitmessage = result.commitmessage;
-      resolve();
-    });
-  });
-  await new Promise((resolve, reject) => {
-    exec('git add .', (err, stdout, stderr) => {
-      if (err) throw err;
       if (commitmessage === '') commitmessage = '.';
-      console.log(stdout);
       resolve();
-    });
-  });
-  await new Promise((resolve, reject) => {
-    exec('git commit -am "' + commitmessage + '"', (err, stdout, stderr) => {
-      if (err) {
-        if (err) {
-          console.log.bind(err);
-          console.log(stdout);
-          reject();
-          return;
-        }
-        resolve();
-      } else {
-        resolve();
-      }
     });
   })
   .catch((err) => {
     console.log(err);
   });
   await new Promise((resolve, reject) => {
-    branch(function(err, branchName) {
-      exec('git push origin ' + branchName, (err, stdout, stderr) => {
-        if (err) {
-          console.log.bind(err);
-          console.log(stdout);
-          reject();
-          return;
-        }
-        console.log(stdout);
-        resolve();
+    let command = 'git add .';
+    console.log(command);
+    exec(command, (err, stdout, stderr) => {
+      if (err) throw err;
+      console.log(stdout);
+      resolve();
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  await new Promise((resolve, reject) => {
+    let command = 'git commit -am "' + commitmessage + '"';
+    console.log(command);
+    exec(command, (err, stdout, stderr) => {
+      console.log(stdout);
+      if (err) {
+        console.log.bind(err);
+        reject();
         return;
-      });
+      }
+      resolve();
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  await new Promise((resolve, reject) => {
+    let command = 'git push origin ' + branchName;
+    console.log(command);
+    exec(command, (err, stdout, stderr) => {
+      console.log(stdout); // Is empty somehow.
+      console.log(stderr); // Is wehat stdout should be.
+      if (err) {
+        console.log.bind(err);
+        reject();
+        return;
+      }
+      resolve();
+      return;
     });
   });
-  /* await new Promise((resolve, reject) => {
-    branch(function(err, branchName) {
-      console.log('\x1b[32m', 'Create a merge request from source branch ' + branchName + ' to dev');
+  gitRemoteOriginUrl().then(url => {
+    let urlpart = url.substr(url.lastIndexOf(':') + 1);
+    urlpart = urlpart.replace('.git', '');
+    await new Promise((resolve, reject) => {
+      console.log('\x1b[32m', 'Create a merge request from source branch ' + branchName + ' to main branch');
       console.log('\x1b[0m', '');
 
       repoName(function(err, currentRepoName) {
-        exec('start https://bitbucket.org/ /' + currentRepoName + '/pull-requests/new', (err, stdout, stderr) => {
+        exec('start https://bitbucket.org/' + urlpart + '/' + branchName + '/pull-requests/new', (err, stdout, stderr) => {
           if (err) throw err;
           console.log(stdout);
 
@@ -74,6 +93,6 @@ let fastCommit = async () => {
         });
       });
     });
-  }); */
+  });
 };
 fastCommit();
