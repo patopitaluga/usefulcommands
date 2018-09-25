@@ -9,7 +9,7 @@ const gitRemoteOriginUrl = require('git-remote-origin-url');
 /**
  *
  */
-let fastCommit = async () => {
+let fastCommit = async function() {
   let commitmessage = '';
   let branchName;
   await new Promise((resolve, reject) => {
