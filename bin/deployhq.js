@@ -2,12 +2,13 @@
 
 if (typeof process.argv[2] === 'undefined') throw 'Must set project name after deployhq command.';
 if (typeof process.argv[3] === 'undefined') throw 'Must set branch name after project name.';
-if (!process.env.DEPLOYHQ_URL) {
-  throw 'Run setupdeployhq.';
-}
 
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
+if (!process.env.DEPLOYHQ_URL) {
+  throw 'Run setupdeployhq.';
+}
 
 const axios = require('axios');
 
