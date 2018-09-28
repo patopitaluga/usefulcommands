@@ -48,18 +48,18 @@ let deployqh = async function() {
       // console.log(response.data.records[0].identifier);
       parent_identifier = response.data.records[0].servers[0].identifier;
       response.data.records.forEach((eachRecord) => {
-        if (eachRecord.branch === process.argv[3]) {
+        if (eachRecord.branch === process.argv[3] && start_revision === '') {
           start_revision = eachRecord.end_revision.ref;
         }
       })
-      console.log(response.data.records);
+      // console.log(response.data.records);
     })
     .catch(function(error) {
       console.log('error');
       console.log(error);
     });
 
-  if (latest_revision !== '' && parent_identifier !== '' && start_revision !== '' && false) {
+  if (latest_revision !== '' && parent_identifier !== '' && start_revision !== '') {
     console.log('Initiating deploy');
     console.log(
       {
