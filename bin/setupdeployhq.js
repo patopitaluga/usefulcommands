@@ -19,7 +19,7 @@ function startPromt() {
   let dotEnvText = '';
   for (let eachEnvVarInDontEnv in envConfig) {
     if (eachEnvVarInDontEnv !== 'DEPLOYHQ_URL' && eachEnvVarInDontEnv !== 'DEPLOYHQ_EMAIL' && eachEnvVarInDontEnv !== 'DEPLOYHQ_APIKEY')
-    dotEnvText += eachEnvVarInDontEnv + '=' + envConfig[eachEnvVarInDontEnv] + '\n';
+      dotEnvText += eachEnvVarInDontEnv + '=' + envConfig[eachEnvVarInDontEnv] + '\n';
   }
   dotEnvText += `DEPLOYHQ_URL=${deployHQUrl}
 DEPLOYHQ_EMAIL=${deployHQUserEmail}
