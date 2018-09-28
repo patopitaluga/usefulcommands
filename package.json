@@ -13,7 +13,9 @@
     "vaallover": "bin/vaallover.js",
     "listuc": "bin/listuc.js",
     "setupparrot": "bin/setupparrot.js",
-    "parrot": "bin/parrot.js"
+    "parrot": "bin/parrot.js",
+    "setupdeployhq": "bin/setupdeployhq.js",
+    "deployhq": "bin/deployhq.js"
   },
   "author": "Pato Pitaluga <patricio.pitaluga@gmail.com>",
   "license": "ISC",
