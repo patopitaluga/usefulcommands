@@ -46,10 +46,20 @@ let req = http.request({
     'Authorization': 'Bearer ' + notifyParrotJWT
   }
 }, function (res) {
+  if (res.statusCode === 401) {
+    console.log('Invalid token.');
+    return;
+  }
   console.log('NotifyParrot: ' + message);
 });
 
-req.on('error', function (e) {
+req.on('error', function(e) {
+  console.log('Error');
+  if (e.code === 'ECONNREFUSED') {
+    console.log('Can\'t connect to: ' + serverUrl + ':' + serverPort + '. Check if NotifyParrot server is running.');
+    return;
+  }
+  console.log(typeof e);
 });
 
 req.write(postData);
